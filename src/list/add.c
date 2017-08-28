@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 11:59:03 2017 Victor LE DANTEC
-** Last update Sun Aug 27 18:44:21 2017 Victor LE DANTEC
+** Last update Mon Aug 28 07:51:19 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -43,10 +43,13 @@ static void	longlist_add(t_longlist *list, long longint)
 
 void	list_add(t_list *list, void *data)
 {
-  if (list == NULL || data == NULL)
-    error_exit("[LibSharp] list_add", "null arguments");
-  if (list->type == STRING_LIST)
-    strlist_add(list->data, (char *)data);
-  else if (list->type == LONG_LIST)
-    longlist_add(list->data, (long)data);
+  if (list != NULL && data != NULL)
+    {
+      if (list->type == STRING_LIST)
+	strlist_add(list->data, (char *)data);
+      else if (list->type == LONG_LIST)
+	longlist_add(list->data, (long)data);
+    }
+  else
+    fprintf(stderr, "[LibSharp] list_add: null arguments.\n");  
 }
