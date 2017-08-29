@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Mon Aug 21 19:45:31 2017 Victor LE DANTEC
-** Last update Mon Aug 28 07:49:47 2017 Victor LE DANTEC
+** Last update Tue Aug 29 19:08:36 2017 Victor LE DANTEC
 */
 
 #include <stdlib.h>
@@ -33,11 +33,23 @@ static t_longlist	*longlist_create()
   list->list = NULL;
   return (list);
 }
+static t_ptrlist	*ptrlist_create()
+{
+  t_ptrlist		*list;
+
+  if ((list = malloc(sizeof(t_ptrlist))) == NULL)
+    malloc_exit("[LibSharp] stringlist_create");
+  list->size = 0;
+  list->list = NULL;
+  return (list);
+}
 
 static void	allocate_list(t_list *list)
 {
   if (list->type == STRING_LIST)
     list->data = stringlist_create();
+  else if (list->type == POINTER_LIST)
+    list->data = ptrlist_create();
   else if (list->type == LONG_LIST)
     list->data = longlist_create();
 }

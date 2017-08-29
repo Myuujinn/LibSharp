@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 17:25:31 2017 Victor LE DANTEC
-** Last update Sun Aug 27 17:37:02 2017 Victor LE DANTEC
+** Last update Tue Aug 29 19:09:43 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -38,12 +38,23 @@ static void	longlist_destroy(t_longlist *list)
   free(list);
 }
 
+static void	ptrlist_destroy(t_ptrlist *list)
+{
+  if (list->list != NULL)
+    free(list->list);
+  else
+    fprintf(stderr, "[LibSharp] ptrlist_destroy: list data is null.\n");
+  free(list);
+}
+
 void	list_destroy(t_list *list)
 {
   if (list != NULL && list->data != NULL)
     {
       if (list->type == STRING_LIST)
 	strlist_destroy(list->data);
+      else if (list->type == POINTER_LIST)
+	ptrlist_destroy(list->data);
       else if (list->type == LONG_LIST)
 	longlist_destroy(list->data);
       free(list);

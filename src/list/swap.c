@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 20:16:12 2017 Victor LE DANTEC
-** Last update Sun Aug 27 20:53:38 2017 Victor LE DANTEC
+** Last update Tue Aug 29 19:15:59 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -32,9 +32,25 @@ void	longlist_swap(t_longlist *list, size_t index, size_t index2)
   long	save;
 
   if (index >= list->size || index2 >= list->size)
-    fprintf(stderr, "[LibSharp] strlist_swap: out of bounds.\n");
+    fprintf(stderr, "[LibSharp] longlist_swap: out of bounds.\n");
   else if (index == index2)
-    fprintf(stderr, "[LibSharp] strlist_swap: same index.\n");
+    fprintf(stderr, "[LibSharp] longlist_swap: same index.\n");
+  else
+    {
+      save = list->list[index];
+      list->list[index] = list->list[index2];
+      list->list[index2] = save;
+    }
+}
+
+void	ptrlist_swap(t_ptrlist *list, size_t index, size_t index2)
+{
+  void	*save;
+
+  if (index >= list->size || index2 >= list->size)
+    fprintf(stderr, "[LibSharp] ptrlist_swap: out of bounds.\n");
+  else if (index == index2)
+    fprintf(stderr, "[LibSharp] ptrlist_swap: same index.\n");
   else
     {
       save = list->list[index];
@@ -49,6 +65,8 @@ void	list_swap(t_list *list, size_t index, size_t index2)
     {
       if (list->type == STRING_LIST)
 	strlist_swap(list->data, index, index2);
+      else if (list->type == POINTER_LIST)
+	ptrlist_swap(list->data, index, index2);
       else if (list->type == LONG_LIST)
 	longlist_swap(list->data, index, index2);
     }
