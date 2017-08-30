@@ -5,7 +5,7 @@
 ## Login   <victor.le-dantec@epitech.eu>
 ## 
 ## Started on  Mon Aug 21 19:40:04 2017 Victor LE DANTEC
-## Last update Tue Aug 29 21:30:27 2017 Victor LE DANTEC
+## Last update Wed Aug 30 18:39:46 2017 Victor LE DANTEC
 ##
 
 NAME	=	libsharp.a
@@ -21,6 +21,7 @@ CODE	=	$(SRC)list/create.c		\
 		$(SRC)list/import.c		\
 		$(SRC)list/sort.c		\
 		$(SRC)list/get.c		\
+		$(SRC)list/search.c		\
 		$(SRC)gc/malloc.c		\
 		$(SRC)gc/free.c			\
 		$(SRC)gc/print.c		\

@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Thu Aug 24 19:17:02 2017 Victor LE DANTEC
-** Last update Tue Aug 29 21:12:22 2017 Victor LE DANTEC
+** Last update Wed Aug 30 19:16:38 2017 Victor LE DANTEC
 */
 
 #pragma once
@@ -27,7 +27,7 @@ typedef struct	s_garbage_collector
   t_node	*nodes;
 }		t_garbage_collector;
 
-extern t_garbage_collector	*gc;
+extern t_garbage_collector	*g_gc;
 
 void	malloc_exit(char *source);
 void	error_exit(char *source, char *error);
@@ -35,4 +35,7 @@ int	error_return(char *source, char *error, int status);
 void	*error_ptr(char *source, char *error, void *ptr);
 
 void	*gc_malloc(size_t size, char *hash);
+void	gc_free_ptr(void *ptr);
+void	gc_free_hash(char *hash);
+void	gc_free();
 void	gc_print();

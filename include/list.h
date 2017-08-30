@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Mon Aug 21 20:03:35 2017 Victor LE DANTEC
-** Last update Tue Aug 29 20:14:21 2017 Victor LE DANTEC
+** Last update Wed Aug 30 18:39:32 2017 Victor LE DANTEC
 */
 
 #pragma once
@@ -53,6 +53,7 @@ void		list_destroy(t_list *list);
 void		list_remove(t_list *list, size_t index);
 void		list_import(t_list *list, void *data, size_t size);
 void		*list_get(t_list *list, size_t index);
+size_t		list_search(t_list *list, void *data);
 
 void		list_swap(t_list *list, size_t index, size_t index2);
 void		strlist_swap(t_strlist *list, size_t index, size_t index2);

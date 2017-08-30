@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 20:52:04 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:39:35 2017 Victor LE DANTEC
+** Last update Wed Aug 30 18:29:55 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -31,7 +31,7 @@ static void	strlist_sort(t_strlist *list)
 }
 
 static void	longlist_sort(t_longlist *list)
-{ 
+{
   size_t	i;
   size_t	j;
 

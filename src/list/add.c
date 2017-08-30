@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 11:59:03 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:07:19 2017 Victor LE DANTEC
+** Last update Wed Aug 30 18:30:07 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -66,5 +66,5 @@ void	list_add(t_list *list, void *data)
 	longlist_add(list->data, (long)data);
     }
   else
-    fprintf(stderr, "[LibSharp] list_add: null arguments.\n");  
+    fprintf(stderr, "[LibSharp] list_add: null arguments.\n");
 }

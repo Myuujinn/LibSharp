@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Sun Aug 27 20:28:45 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:11:44 2017 Victor LE DANTEC
+** Last update Wed Aug 30 19:15:17 2017 Victor LE DANTEC
 */
 
 #include <stdio.h>
@@ -40,7 +40,6 @@ static void	ptrlist_import(t_list *list, void *data, size_t size)
     while (i < size)
       list_add(list, ((void **)data)[i++]);
 }
-
 
 void	list_import(t_list *list, void *data, size_t size)
 {
