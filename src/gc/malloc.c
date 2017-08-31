@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Tue Aug 29 20:07:00 2017 Victor LE DANTEC
-** Last update Wed Aug 30 19:16:30 2017 Victor LE DANTEC
+** Last update Thu Aug 31 18:49:31 2017 Victor LE DANTEC
 */
 
 #include <stdlib.h>
@@ -20,6 +20,7 @@ static void	*allocate_pointer(t_node *node, size_t size)
 
   if ((ptr = malloc(size)) == NULL)
     malloc_exit("[LibSharp] allocate_pointer");
+  memset(ptr, 0, size);
   list_add(node->ptr_list, ptr);
   return (ptr);
 }
@@ -71,7 +72,7 @@ void		*gc_malloc(size_t size, char *hash)
   if (!g_gc)
     create_garbage_collector();
   if (size == 0)
-    return (error_ptr("[LibSharp] gc_malloc", "size was 0.", NULL));
+    return (NULL);
   if ((node = get_node(hash)) == NULL && hash != NULL)
     node = create_node(hash);
   return (allocate_pointer(node, size));

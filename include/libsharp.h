@@ -5,7 +5,7 @@
 ** Login   <victor.le-dantec@epitech.eu>
 ** 
 ** Started on  Thu Aug 24 19:17:02 2017 Victor LE DANTEC
-** Last update Wed Aug 30 19:16:38 2017 Victor LE DANTEC
+** Last update Thu Aug 31 18:50:05 2017 Victor LE DANTEC
 */
 
 #pragma once
@@ -35,6 +35,7 @@ int	error_return(char *source, char *error, int status);
 void	*error_ptr(char *source, char *error, void *ptr);
 
 void	*gc_malloc(size_t size, char *hash);
+void	*gc_realloc(void *ptr, size_t oldsize, size_t newsize, char *hash);
 void	gc_free_ptr(void *ptr);
 void	gc_free_hash(char *hash);
 void	gc_free();

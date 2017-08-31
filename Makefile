@@ -5,7 +5,7 @@
 ## Login   <victor.le-dantec@epitech.eu>
 ## 
 ## Started on  Mon Aug 21 19:40:04 2017 Victor LE DANTEC
-## Last update Wed Aug 30 18:39:46 2017 Victor LE DANTEC
+## Last update Thu Aug 31 18:50:13 2017 Victor LE DANTEC
 ##
 
 NAME	=	libsharp.a
@@ -24,6 +24,7 @@ CODE	=	$(SRC)list/create.c		\
 		$(SRC)list/search.c		\
 		$(SRC)gc/malloc.c		\
 		$(SRC)gc/free.c			\
+		$(SRC)gc/realloc.c		\
 		$(SRC)gc/print.c		\
 		$(SRC)error_exit.c		\
 		$(SRC)malloc_exit.c		\
@@ -34,7 +35,7 @@ OBJ	=	$(CODE:.c=.o)
 
 INC	=	-I include/
 
-CFLAGS	+=	-Ofast -Wall -Wextra -pedantic $(INC) -g
+CFLAGS	+=	-Ofast -Wall -Wextra -pedantic $(INC)
 
 AR	=	ar rc
 
