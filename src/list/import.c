@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "list.h"
+#include "libsharp.h"
 
 static void	strlist_import(list_t *list, void *data, uint size)
 {
@@ -44,5 +44,5 @@ void	list_import(list_t *list, void *data, uint size)
 			break ;
 		}
 	} else
-		fprintf(stderr, "[LibSharp] list_import: list is null.\n");
+		libsharp_error("list_import: list is null.");
 }

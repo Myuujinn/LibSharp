@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "list.h"
+#include "libsharp.h"
 
 static uint	strlist_search(strlist_t *list, char *string)
 {
@@ -16,7 +16,7 @@ static uint	strlist_search(strlist_t *list, char *string)
 			if (strcmp(list->list[i], string) == 0)
 				return (i);
 	} else
-		fprintf(stderr, "[LibSharp] strlist_search: string is null.\n");
+		libsharp_error("strlist_search: string is null.");
 	return ((uint)-1);
 }
 
@@ -27,7 +27,7 @@ static uint	ptrlist_search(ptrlist_t *list, void *ptr)
 			if (list->list[i] == ptr)
 				return (i);
 	} else
-		fprintf(stderr, "[LibSharp] ptrlist_search: pointer is null.\n");
+		libsharp_error("ptrlist_search: pointer is null.");
 	return ((uint)-1);
 }
 
@@ -51,6 +51,6 @@ uint	list_search(list_t *list, void *data)
 			return (longlist_search(list->data, (long)data));
 		}
 	} else
-		fprintf(stderr, "[LibSharp] list_search: list is null.\n");
+		libsharp_error("list_search: list is null.");
 	return ((uint)-1);
 }

@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "list.h"
+#include "libsharp.h"
 
 static void	*get_data_from_type(list_t *list, uint index)
 {
@@ -26,15 +26,15 @@ static void	*choose_which_type(list_t *list, uint index)
 	if (index < *list->size)
 		get_data_from_type(list, index);
 	else
-		fprintf(stderr, "[LibSharp] list_get: out of bounds.\n");
+		libsharp_error("list_get: out of bounds.");
 	return (NULL);
 }
 
 void	*list_get(list_t *list, uint index)
 {
 	if (list != NULL) {
-		return (choose_which_type(list, index)); 
+		return (choose_which_type(list, index));
 	}
-	fprintf(stderr, "[LibSharp] list_get: list is null.\n");
+	libsharp_error("list_get: list is null.");
 	return (NULL);
 }

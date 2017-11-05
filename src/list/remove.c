@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "libsharp.h"
 
 static void	strlist_remove(strlist_t *list, uint index)
 {
@@ -22,7 +22,7 @@ static void	strlist_remove(strlist_t *list, uint index)
 static void	longlist_remove(longlist_t *list, uint index)
 {
 	if (list->list == NULL || list->size == 0)
-		fprintf(stderr, "[LibSharp] longlist_remove: list data is null.\n");
+		libsharp_error("longlist_remove: list data is null.");
 	for (uint i = index; list->size >= i; i++)
 		if (i + 1 < list->size)
 			list->list[i] = list->list[i + 1];
@@ -32,7 +32,7 @@ static void	longlist_remove(longlist_t *list, uint index)
 static void	ptrlist_remove(ptrlist_t *list, uint index)
 {
 	if (list->list == NULL || list->size == 0)
-		fprintf(stderr, "[LibSharp] ptrlist_remove: list data is null.\n");
+		libsharp_error("ptrlist_remove: list data is null.");
 	for (uint i = index; list->size >= i; i++)
 		if (i + 1 < list->size)
 			list->list[i] = list->list[i + 1];
@@ -54,5 +54,5 @@ void	list_remove(list_t *list, uint index)
 			break ;
 		}
 	else
-		fprintf(stderr, "[LibSharp] list_remove: list is null.\n");
+		libsharp_error("list_remove: list is null.");
 }

@@ -67,5 +67,5 @@ void	list_add(list_t *list, void *data)
 			break ;
 		}
 	} else
-		fprintf(stderr, "[LibSharp] list_add: null arguments.\n");
+		libsharp_error("list_add: null arguments.");
 }

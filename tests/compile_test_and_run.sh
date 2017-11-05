@@ -1,8 +1,11 @@
 #!/bin/bash
 
 cd ..
-make re
+make fclean
+make debug
 cd -
 gcc test.c -I ../include/ -L../ -lsharp -o testing
-./testing
+valgrind ./testing
 rm -rf testing
+cd ..
+make fclean

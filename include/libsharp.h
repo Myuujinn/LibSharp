@@ -31,6 +31,7 @@ typedef unsigned long long	iterator_t;
 
 extern garbage_collector_t	*g_gc;
 
+void	libsharp_error(char *error);
 void	malloc_exit(char *source);
 void	error_exit(char *source, char *error);
 int	error_return(char *source, char *error, int status);

@@ -6,16 +6,16 @@
 */
 
 #include <stdio.h>
-#include "list.h"
+#include "libsharp.h"
 
 void	strlist_swap(strlist_t *list, uint index, uint index2)
 {
 	char	*save;
 
 	if (index >= list->size || index2 >= list->size)
-		fprintf(stderr, "[LibSharp] strlist_swap: out of bounds.\n");
+		libsharp_error("strlist_swap: out of bounds.");
 	else if (index == index2)
-		fprintf(stderr, "[LibSharp] strlist_swap: same index.\n");
+		libsharp_error("strlist_swap: same index.");
 	else {
 		save = list->list[index];
 		list->list[index] = list->list[index2];
@@ -28,9 +28,9 @@ void	longlist_swap(longlist_t *list, uint index, uint index2)
 	long	save;
 
 	if (index >= list->size || index2 >= list->size)
-		fprintf(stderr, "[LibSharp] longlist_swap: out of bounds.\n");
+		libsharp_error("longlist_swap: out of bounds.");
 	else if (index == index2)
-		fprintf(stderr, "[LibSharp] longlist_swap: same index.\n");
+		libsharp_error("[LibSharp] longlist_swap: same index.");
 	else {
 		save = list->list[index];
 		list->list[index] = list->list[index2];
@@ -43,9 +43,9 @@ void	ptrlist_swap(ptrlist_t *list, uint index, uint index2)
 	void	*save;
 
 	if (index >= list->size || index2 >= list->size)
-		fprintf(stderr, "[LibSharp] ptrlist_swap: out of bounds.\n");
+		libsharp_error("ptrlist_swap: out of bounds.");
 	else if (index == index2)
-		fprintf(stderr, "[LibSharp] ptrlist_swap: same index.\n");
+		libsharp_error("ptrlist_swap: same index.");
 	else {
 		save = list->list[index];
 		list->list[index] = list->list[index2];
@@ -68,5 +68,5 @@ void	list_swap(list_t *list, uint index, uint index2)
 			break ;
 		}
 	else
-		fprintf(stderr, "[LibSharp] list_swap: list is null.\n");
+		libsharp_error("list_swap: list is null.");
 }

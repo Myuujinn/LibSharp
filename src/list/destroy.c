@@ -7,14 +7,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "list.h"
+#include "libsharp.h"
 
 static void	strlist_destroy(strlist_t *list)
 {
 	if (list->list != NULL)	{
 		for (uint i = 0; i < list->size; i++)
 			if (list->list[i] != NULL)
-				free(list->list[i - 1]);
+				free(list->list[i]);
 		free(list->list);
 	}
 	free(list);
@@ -50,5 +50,5 @@ void	list_destroy(list_t *list)
 		}
 		free(list);
 	} else
-		fprintf(stderr, "[LibSharp] list_destroy: list is null.\n");
+		libsharp_error("list_destroy: list is null.");
 }

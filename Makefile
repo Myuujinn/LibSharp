@@ -1,11 +1,8 @@
 ##
-## Makefile for LibSharp in /home/myujinn/Liebrary
-## 
-## Made by Victor LE DANTEC
-## Login   <victor.le-dantec@epitech.eu>
-## 
-## Started on  Mon Aug 21 19:40:04 2017 Victor LE DANTEC
-## Last update Thu Aug 31 18:50:13 2017 Victor LE DANTEC
+## EPITECH PROJECT, 2017
+## LibSharp
+## File description:
+## Makefile defining the building rules
 ##
 
 NAME	=	libsharp.a
@@ -29,7 +26,8 @@ CODE	=	$(SRC)list/create.c		\
 		$(SRC)error_exit.c		\
 		$(SRC)malloc_exit.c		\
 		$(SRC)error_return.c		\
-		$(SRC)error_ptr.c
+		$(SRC)error_ptr.c		\
+		$(SRC)libsharp_error.c
 
 OBJ	=	$(CODE:.c=.o)
 
@@ -43,6 +41,10 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 		$(AR) $(NAME) $(OBJ)
+
+
+debug:		CFLAGS += -g
+debug:		$(NAME)
 
 clean:
 		$(RM) $(OBJ)
