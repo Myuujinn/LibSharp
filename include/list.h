@@ -1,61 +1,59 @@
 /*
-** list.h for LibSharp in /home/myujinn/LibSharp
-** 
-** Made by Victor LE DANTEC
-** Login   <victor.le-dantec@epitech.eu>
-** 
-** Started on  Mon Aug 21 20:03:35 2017 Victor LE DANTEC
-** Last update Wed Aug 30 18:39:32 2017 Victor LE DANTEC
+** EPITECH PROJECT, 2017
+** LibSharp
+** File description:
+** Header file for all list related stuff
 */
 
 #pragma once
 
 #include <stddef.h>
+#include <stdlib.h>
 
-#define LIST	t_list*
+#define LIST	list_t	*
 
-typedef enum	e_list_types
-  {
-    STRING_LIST,
-    POINTER_LIST,
-    LONG_LIST
-  }		t_list_types;
-
-typedef struct	s_list
+typedef enum	list_types_e
 {
-  char		type;
-  size_t	*size;
-  void		*data;
-}		t_list;
+	STRING_LIST,
+	POINTER_LIST,
+	LONG_LIST
+}		list_types_t;
 
-typedef struct	s_strlist
+typedef struct	list_s
 {
-  size_t	size;
-  char		**list;
-}		t_strlist;
+	char	type;
+	uint	*size;
+	void	*data;
+}		list_t;
 
-typedef struct	s_longlist
+typedef struct	strlist_s
 {
-  size_t	size;
-  long		*list;
-}		t_longlist;
+	uint	size;
+	char	**list;
+}		strlist_t;
 
-typedef struct	s_ptrlist
+typedef struct	longlist_s
 {
-  size_t	size;
-  void		**list;
-}		t_ptrlist;
+	uint	size;
+	long	*list;
+}		longlist_t;
 
-t_list		*list_create(t_list_types data_type);
-void		list_add(t_list *list, void *data);
-void		list_print(t_list *list);
-void		list_destroy(t_list *list);
-void		list_remove(t_list *list, size_t index);
-void		list_import(t_list *list, void *data, size_t size);
-void		*list_get(t_list *list, size_t index);
-size_t		list_search(t_list *list, void *data);
+typedef struct	ptrlist_s
+{
+	uint	size;
+	void	**list;
+}		ptrlist_t;
 
-void		list_swap(t_list *list, size_t index, size_t index2);
-void		strlist_swap(t_strlist *list, size_t index, size_t index2);
-void		longlist_swap(t_longlist *list, size_t index, size_t index2);
-void		list_sort(t_list *list);
+list_t		*list_create(list_types_t data_type);
+void		list_add(list_t *list, void *data);
+void		list_print(list_t *list);
+void		list_destroy(list_t *list);
+void		list_remove(list_t *list, uint index);
+void		list_import(list_t *list, void *data, uint size);
+void		*list_get(list_t *list, uint index);
+uint		list_search(list_t *list, void *data);
+
+void		list_swap(list_t *list, uint index, uint index2);
+void		strlist_swap(strlist_t *list, uint index, uint index2);
+void		longlist_swap(longlist_t *list, uint index, uint index2);
+void		list_sort(list_t *list);

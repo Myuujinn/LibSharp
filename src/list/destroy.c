@@ -1,64 +1,54 @@
 /*
-** destroy.c for LibSharp in /home/myujinn/LibSharp
-** 
-** Made by Victor LE DANTEC
-** Login   <victor.le-dantec@epitech.eu>
-** 
-** Started on  Sun Aug 27 17:25:31 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:09:43 2017 Victor LE DANTEC
+** EPITECH PROJECT, 2017
+** LibSharp
+** File description:
+** Destroy function for the LibSharp's lists.
 */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
 
-static void	strlist_destroy(t_strlist *list)
+static void	strlist_destroy(strlist_t *list)
 {
-  size_t	i;
-
-  if (list->list != NULL)
-    {
-      i = 0;
-      while (i < list->size)
-	if (list->list[i++] != NULL)
-	  free(list->list[i - 1]);
-      free(list->list);
-    }
-  else
-    fprintf(stderr, "[LibSharp] strlist_destroy: list data is null.\n");
-  free(list);
+	if (list->list != NULL)	{
+		for (uint i = 0; i < list->size; i++)
+			if (list->list[i] != NULL)
+				free(list->list[i - 1]);
+		free(list->list);
+	}
+	free(list);
 }
 
-static void	longlist_destroy(t_longlist *list)
+static void	longlist_destroy(longlist_t *list)
 {
-  if (list->list != NULL)
-    free(list->list);
-  else
-    fprintf(stderr, "[LibSharp] longlist_destroy: list data is null.\n");
-  free(list);
+	if (list->list != NULL)
+		free(list->list);
+	free(list);
 }
 
-static void	ptrlist_destroy(t_ptrlist *list)
+static void	ptrlist_destroy(ptrlist_t *list)
 {
-  if (list->list != NULL)
-    free(list->list);
-  else
-    fprintf(stderr, "[LibSharp] ptrlist_destroy: list data is null.\n");
-  free(list);
+	if (list->list != NULL)
+		free(list->list);
+	free(list);
 }
 
-void	list_destroy(t_list *list)
+void	list_destroy(list_t *list)
 {
-  if (list != NULL && list->data != NULL)
-    {
-      if (list->type == STRING_LIST)
-	strlist_destroy(list->data);
-      else if (list->type == POINTER_LIST)
-	ptrlist_destroy(list->data);
-      else if (list->type == LONG_LIST)
-	longlist_destroy(list->data);
-      free(list);
-    }
-  else
-    fprintf(stderr, "[LibSharp] list_destroy: list is null.\n");
+	if (list != NULL && list->data != NULL)	{
+		switch (list->type) {
+		case (STRING_LIST) :
+			strlist_destroy(list->data);
+			break ;
+		case (POINTER_LIST) :
+			ptrlist_destroy(list->data);
+			break ;
+		case (LONG_LIST) :
+			longlist_destroy(list->data);
+			break ;
+		}
+		free(list);
+	} else
+		fprintf(stderr, "[LibSharp] list_destroy: list is null.\n");
 }

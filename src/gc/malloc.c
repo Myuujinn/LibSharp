@@ -1,79 +1,73 @@
 /*
-** malloc.c for LibSharp in /home/myujinn/LibSharp
-** 
-** Made by Victor LE DANTEC
-** Login   <victor.le-dantec@epitech.eu>
-** 
-** Started on  Tue Aug 29 20:07:00 2017 Victor LE DANTEC
-** Last update Thu Aug 31 18:49:31 2017 Victor LE DANTEC
+** EPITECH PROJECT, 2017
+** LibSharp
+** File description:
+** Malloc functions of the LibSharp garbage collector
 */
 
 #include <stdlib.h>
 #include <string.h>
 #include "libsharp.h"
 
-t_garbage_collector *g_gc = NULL;
+garbage_collector_t *g_gc = NULL;
 
-static void	*allocate_pointer(t_node *node, size_t size)
+static void	*allocate_pointer(node_t *node, size_t size)
 {
-  void		*ptr;
+	void	*ptr;
 
-  if ((ptr = malloc(size)) == NULL)
-    malloc_exit("[LibSharp] allocate_pointer");
-  memset(ptr, 0, size);
-  list_add(node->ptr_list, ptr);
-  return (ptr);
+	ptr = malloc(size);
+	if (ptr == NULL)
+		malloc_exit("[LibSharp] allocate_pointer");
+	memset(ptr, 0, size);
+	list_add(node->ptr_list, ptr);
+	return (ptr);
 }
 
-static t_node	*create_node(char *hash)
+static node_t	*create_node(char *hash)
 {
-  if ((g_gc->nodes = realloc(g_gc->nodes, sizeof(t_node) * ++g_gc->size)) == NULL)
-    malloc_exit("[LibSharp] create_node");
-  if (hash != NULL)
-    g_gc->nodes[g_gc->size - 1].hash = strdup(hash);
-  else
-    g_gc->nodes[g_gc->size - 1].hash = NULL;
-  g_gc->nodes[g_gc->size - 1].ptr_list = list_create(POINTER_LIST);
-  return (&g_gc->nodes[g_gc->size - 1]);
+	g_gc->nodes = realloc(g_gc->nodes, sizeof(node_t) * ++g_gc->size);
+	if (g_gc->nodes == NULL)
+		malloc_exit("[LibSharp] create_node");
+	if (hash != NULL)
+		g_gc->nodes[g_gc->size - 1].hash = strdup(hash);
+	else
+		g_gc->nodes[g_gc->size - 1].hash = NULL;
+	g_gc->nodes[g_gc->size - 1].ptr_list = list_create(POINTER_LIST);
+	return (&g_gc->nodes[g_gc->size - 1]);
 }
 
-static void	create_garbage_collector()
+static void	create_garbage_collector(void)
 {
-  if ((g_gc = malloc(sizeof(t_garbage_collector))) == NULL)
-    malloc_exit("[LibSharp] build_garbage_collector");
-  g_gc->size = 0;
-  g_gc->nodes = NULL;
-  create_node(NULL);
+	g_gc = malloc(sizeof(garbage_collector_t));
+	if (g_gc == NULL)
+		malloc_exit("[LibSharp] build_garbage_collector");
+	g_gc->size = 0;
+	g_gc->nodes = NULL;
+	create_node(NULL);
 }
 
-static t_node	*get_node(char *hash)
+static node_t	*get_node(char *hash)
 {
-  size_t	i;
-
-  if (g_gc->size != 0)
-    {
-      if (hash == NULL)
-	return (&g_gc->nodes[0]);
-      i = 1;
-      while (i < g_gc->size)
-	{
-	  if (strcmp(g_gc->nodes[i].hash, hash) == 0)
-	    return (&g_gc->nodes[i]);
-	  i++;
+	if (g_gc->size != 0) {
+		if (hash == NULL)
+			return (&g_gc->nodes[0]);
+		for (uint i = 1; i < g_gc->size; i++)
+			if (strcmp(g_gc->nodes[i].hash, hash) == 0)
+				return (&g_gc->nodes[i]);
 	}
-    }
-  return (NULL);
+	return (NULL);
 }
 
-void		*gc_malloc(size_t size, char *hash)
+void	*gc_malloc(size_t size, char *hash)
 {
-  t_node	*node;
+	node_t	*node = NULL;
 
-  if (!g_gc)
-    create_garbage_collector();
-  if (size == 0)
-    return (NULL);
-  if ((node = get_node(hash)) == NULL && hash != NULL)
-    node = create_node(hash);
-  return (allocate_pointer(node, size));
+	if (!g_gc)
+		create_garbage_collector();
+	if (size == 0)
+		return (NULL);
+	node = get_node(hash);
+	if (node == NULL && hash != NULL)
+		node = create_node(hash);
+	return (allocate_pointer(node, size));
 }

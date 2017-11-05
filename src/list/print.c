@@ -1,67 +1,57 @@
 /*
-** print.c for LibSharp in /home/myujinn/LibSharp
-** 
-** Made by Victor LE DANTEC
-** Login   <victor.le-dantec@epitech.eu>
-** 
-** Started on  Sun Aug 27 17:00:06 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:13:21 2017 Victor LE DANTEC
+** EPITECH PROJECT, 2017
+** LibSharp
+** File description:
+** Print function of the LibSharp's lists.
 */
 
 #include <stdio.h>
 #include "list.h"
 
-static void	strlist_print(t_strlist *list)
+static void	strlist_print(strlist_t *list)
 {
-  size_t	i;
-
-  i = 0;
-  printf("{ ");
-  while (i < list->size)
-    {
-      printf("\"%s\"", (list->list[i++]));
-      if (i < list->size)
-	printf(", ");
-    }
-  printf(" }\n");
+	printf("{ ");
+	for (uint i = 0; i < list->size; i++) {
+		printf("\"%s\"", (list->list[i]));
+		if (i + 1 < list->size)
+			printf(", ");
+	}
+	printf(" }\n");
 }
 
-static void	longlist_print(t_longlist *list)
+static void	longlist_print(longlist_t *list)
 {
-  size_t	i;
-
-  i = 0;
-  printf("{ ");
-  while (i < list->size)
-    {
-      printf("%ld", (list->list[i++]));
-      if (i < list->size)
-	printf(", ");
-    }
-  printf(" }\n");
+	printf("{ ");
+	for (uint i = 0; i < list->size; i++) {
+		printf("%ld", (list->list[i]));
+		if (i + 1 < list->size)
+			printf(", ");
+	}
+	printf(" }\n");
 }
 
-static void	ptrlist_print(t_ptrlist *list)
+static void	ptrlist_print(ptrlist_t *list)
 {
-  size_t	i;
-
-  i = 0;
-  printf("{ ");
-  while (i < list->size)
-    {
-      printf("%p", (list->list[i++]));
-      if (i < list->size)
-	printf(", ");
-    }
-  printf(" }\n");
+	printf("{ ");
+	for (uint i = 0; i < list->size; i++) {
+		printf("%p", (list->list[i]));
+		if (i + 1 < list->size)
+			printf(", ");
+	}
+	printf(" }\n");
 }
 
-void	list_print(t_list *list)
+void	list_print(list_t *list)
 {
-  if (list->type == STRING_LIST)
-    strlist_print(list->data);
-  else if (list->type == POINTER_LIST)
-    ptrlist_print(list->data);
-  else if (list->type == LONG_LIST)
-    longlist_print(list->data);
+	switch (list->type) {
+	case (STRING_LIST) :
+		strlist_print(list->data);
+		break ;
+	case (POINTER_LIST) :
+		ptrlist_print(list->data);
+		break ;
+	case (LONG_LIST) :
+		longlist_print(list->data);
+		break ;
+	}
 }

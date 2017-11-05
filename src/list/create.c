@@ -1,69 +1,76 @@
 /*
-** list.c for LibSharp in /home/myujinn/LibSharp
-** 
-** Made by Victor LE DANTEC
-** Login   <victor.le-dantec@epitech.eu>
-** 
-** Started on  Mon Aug 21 19:45:31 2017 Victor LE DANTEC
-** Last update Tue Aug 29 19:08:36 2017 Victor LE DANTEC
+** EPITECH PROJECT, 2017
+** LibSharp
+** File description:
+** Create function for the LibSharp's lists.
 */
 
 #include <stdlib.h>
 #include "libsharp.h"
 #include "list.h"
 
-static t_strlist	*stringlist_create()
+static strlist_t	*stringlist_create()
 {
-  t_strlist		*list;
+	strlist_t	*list;
 
-  if ((list = malloc(sizeof(t_strlist))) == NULL)
-    malloc_exit("[LibSharp] stringlist_create");
-  list->size = 0;
-  list->list = NULL;
-  return (list);
+	list = malloc(sizeof(strlist_t));
+	if (list == NULL)
+		malloc_exit("[LibSharp] stringlist_create");
+	list->size = 0;
+	list->list = NULL;
+	return (list);
 }
 
-static t_longlist	*longlist_create()
+static longlist_t	*longlist_create()
 {
-  t_longlist		*list;
+	longlist_t	*list;
 
-  if ((list = malloc(sizeof(t_longlist))) == NULL)
-    malloc_exit("[LibSharp] stringlist_create");
-  list->size = 0;
-  list->list = NULL;
-  return (list);
-}
-static t_ptrlist	*ptrlist_create()
-{
-  t_ptrlist		*list;
-
-  if ((list = malloc(sizeof(t_ptrlist))) == NULL)
-    malloc_exit("[LibSharp] stringlist_create");
-  list->size = 0;
-  list->list = NULL;
-  return (list);
+	list = malloc(sizeof(longlist_t));
+	if (list == NULL)
+		malloc_exit("[LibSharp] stringlist_create");
+	list->size = 0;
+	list->list = NULL;
+	return (list);
 }
 
-static void	allocate_list(t_list *list)
+static ptrlist_t	*ptrlist_create()
 {
-  if (list->type == STRING_LIST)
-    list->data = stringlist_create();
-  else if (list->type == POINTER_LIST)
-    list->data = ptrlist_create();
-  else if (list->type == LONG_LIST)
-    list->data = longlist_create();
+	ptrlist_t	*list;
+
+	list = malloc(sizeof(ptrlist_t));
+	if (list == NULL)
+		malloc_exit("[LibSharp] stringlist_create");
+	list->size = 0;
+	list->list = NULL;
+	return (list);
 }
 
-t_list		*list_create(t_list_types data_type)
+static void	allocate_list(list_t *list)
 {
-  t_list	*list;
+	switch (list->type) {
+	case (STRING_LIST) :
+		list->data = stringlist_create();
+		break ;
+	case (POINTER_LIST) :
+		list->data = ptrlist_create();
+		break ;
+	case (LONG_LIST) :
+		list->data = longlist_create();
+		break ;
+	}
+}
 
-  if ((list = malloc(sizeof(t_list))) == NULL)
-    return (NULL);
-  if (data_type > LONG_LIST)
-    error_exit("[LibSharp] list_create", "data type unknown.");
-  list->type = data_type;
-  allocate_list(list);
-  list->size = &(((t_strlist *)list->data)->size);
-  return (list);
+list_t		*list_create(list_types_t data_type)
+{
+	list_t	*list;
+
+	list = malloc(sizeof(list_t));
+	if (list == NULL)
+		return (NULL);
+	if (data_type > LONG_LIST)
+		error_exit("[LibSharp] list_create", "data type unknown.");
+	list->type = data_type;
+	allocate_list(list);
+	list->size = &(((strlist_t *)list->data)->size);
+	return (list);
 }
